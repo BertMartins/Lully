@@ -46,7 +46,7 @@ window.onload = function() {
       hours += 24;
     }
     
-    var result = "Idade: " + years + " anos, " + months + " meses, " + days + " dias e " + hours + " horas.";
+    var result = "Lully tem: " + years + " anos, " + months + " meses, " + days + " dias e " + hours + " horas.";
     document.getElementById("result").innerHTML = result;
   }
   
