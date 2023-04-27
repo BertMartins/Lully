@@ -18,3 +18,38 @@ window.onload = function() {
     countdown.innerHTML = `Faltam ${diffDays} dias.`;
   };
   
+  function calculateAge() {
+    var birthdateObj = new Date('04/07/2023');
+    var todayObj = new Date();
+    
+    var years = todayObj.getFullYear() - birthdateObj.getFullYear();
+    var months = todayObj.getMonth() - birthdateObj.getMonth();
+    var days = todayObj.getDate() - birthdateObj.getDate();
+    var hours = todayObj.getHours() - birthdateObj.getHours();
+  
+    if (months < 0 || (months === 0 && days < 0)) {
+      years--;
+      months += 12;
+      if (days < 0) {
+        months--;
+        days += daysInMonth(birthdateObj.getMonth(), birthdateObj.getFullYear());
+      }
+    }
+  
+    if (days < 0) {
+      months--;
+      days += daysInMonth(birthdateObj.getMonth(), birthdateObj.getFullYear());
+    }
+  
+    if (hours < 0) {
+      days--;
+      hours += 24;
+    }
+    
+    var result = "Idade: " + years + " anos, " + months + " meses, " + days + " dias e " + hours + " horas.";
+    document.getElementById("result").innerHTML = result;
+  }
+  
+  function daysInMonth(month, year) {
+    return new Date(year, month+1, 0).getDate();
+  }
