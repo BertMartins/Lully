@@ -3,6 +3,7 @@ window.onload = function() {
     const dogImages = [
       "imagem1.jpg",
       "imagem2.jpg",
+      "imagem3.jpg",
     ];
   
     // Seleciona o elemento da imagem de cachorro e define uma imagem aleatória
