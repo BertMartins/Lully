@@ -13,8 +13,8 @@ window.onload = function() {
 
     const countdown = document.getElementById("countdown");
     const today = new Date();
-    const June3st2023 = new Date("jun 03, 2023");
-    const diffTime = June3st2023 - today;
+    const May27st2023 = new Date("may 27, 2023");
+    const diffTime = May27st2023 - today;
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     countdown.innerHTML = `Faltam ${diffDays} dias.`;
   };
