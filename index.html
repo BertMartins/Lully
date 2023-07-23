@@ -18,6 +18,16 @@
       font-family: 'Arial', sans-serif;
       color: #333;
       line-height: 1.6;
+      transition: background-color 0.3s ease;
+    }
+
+    body.light-theme {
+      background-color: #f9f9f9;
+    }
+
+    body.dark-theme {
+      background-color: #111;
+      color: #fff;
     }
 
     #banner {
@@ -45,8 +55,18 @@
       100% { transform: scale(1); }
     }
 
+    #centro {
+      padding: 20px;
+      font-size: 28px;
+      color: #673ab7;
+      font-weight: bold;
+      text-align: center;
+    }
+
     #cartao-vacina {
       width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
       padding: 20px;
       background-color: #f9f9f9;
       font-size: 18px;
@@ -61,19 +81,6 @@
       color: #673ab7;
       font-style: italic;
       font-weight: bold;
-    }
-
-    #centro {
-      padding: 20px;
-      font-size: 28px;
-      color: #673ab7;
-      font-weight: bold;
-    }
-
-    /* Estilo do tema escuro */
-    body.dark-theme {
-      background-color: #111;
-      color: #fff;
     }
 
     .theme-toggle {
@@ -107,7 +114,7 @@
 </head>
 <body>
   <div class="theme-toggle">
-    <input type="radio" name="theme" id="lightTheme">
+    <input type="radio" name="theme" id="lightTheme" checked>
     <label for="lightTheme">Tema Claro</label>
 
     <input type="radio" name="theme" id="darkTheme">
@@ -141,13 +148,16 @@
     setInterval(atualizarIdade, 1000); // Atualiza a idade a cada segundo
     const darkThemeRadio = document.getElementById("darkTheme");
     const lightThemeRadio = document.getElementById("lightTheme");
+    const body = document.body;
 
     darkThemeRadio.addEventListener("change", () => {
-      document.body.classList.add("dark-theme");
+      body.classList.add("dark-theme");
+      body.classList.remove("light-theme");
     });
 
     lightThemeRadio.addEventListener("change", () => {
-      document.body.classList.remove("dark-theme");
+      body.classList.add("light-theme");
+      body.classList.remove("dark-theme");
     });
   </script>
 </body>
