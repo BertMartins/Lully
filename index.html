@@ -109,6 +109,12 @@
     label:active {
       background-color: #999;
     }
+    .idade {
+      text-align: center;
+      color: palevioletred;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 20px;
+    }
 
   </style>
 </head>
@@ -121,6 +127,7 @@
     <label for="darkTheme">Tema Escuro</label>
   </div>
   <div id="banner"></div>
+  <div class="idade">Nascimento: 08/04/2023</div>
   <div id="idade"></div>
   <div id="centro">Vacinas</div>
   <div id="cartao-vacina">
@@ -131,34 +138,57 @@
   </div>
 
   <script>
-    function atualizarIdade() {
-      var dataNascimento = new Date('2023-04-08'); // Data de nascimento da cachorra
-      var dataAtual = new Date();
-      var diferenca = dataAtual - dataNascimento;
+function atualizarIdade() {
+  var dataNascimento = new Date('2023-04-08'); // Data de nascimento da cachorra
+  var dataAtual = new Date();
 
-      var dias = Math.floor(diferenca / (1000 * 60 * 60 * 24)); // Cálculo dos dias
-      var meses = Math.floor(dias / 30); // Cálculo dos meses
-      var anos = Math.floor(meses / 12); // Cálculo dos anos
+  // Obter os valores de ano, mês e dia das datas
+  var anoNascimento = dataNascimento.getFullYear();
+  var mesNascimento = dataNascimento.getMonth();
+  var diaNascimento = dataNascimento.getDate();
 
-      var idadeExibida = anos + " anos, " + (meses % 12) + " meses, " + (dias % 30) + " dias";
+  var anoAtual = dataAtual.getFullYear();
+  var mesAtual = dataAtual.getMonth();
+  var diaAtual = dataAtual.getDate();
 
-      document.getElementById("idade").innerText = idadeExibida;
-    }
+  // Calcular a diferença em anos, meses e dias
+  var anos = anoAtual - anoNascimento;
+  var meses = mesAtual - mesNascimento;
+  var dias = diaAtual - diaNascimento;
 
-    setInterval(atualizarIdade, 1000); // Atualiza a idade a cada segundo
-    const darkThemeRadio = document.getElementById("darkTheme");
-    const lightThemeRadio = document.getElementById("lightTheme");
-    const body = document.body;
+  // Ajustar os meses e os dias se necessário
+  if (dias < 0) {
+    // Subtrair um mês e adicionar o número de dias do mês anterior
+    meses--;
+    dias += new Date(anoAtual, mesAtual, 0).getDate();
+  }
 
-    darkThemeRadio.addEventListener("change", () => {
-      body.classList.add("dark-theme");
-      body.classList.remove("light-theme");
-    });
+  if (meses < 0) {
+    // Subtrair um ano e adicionar 12 meses
+    anos--;
+    meses += 12;
+  }
 
-    lightThemeRadio.addEventListener("change", () => {
-      body.classList.add("light-theme");
-      body.classList.remove("dark-theme");
-    });
-  </script>
+  var idadeExibida = anos + " anos, " + meses + " meses, " + dias + " dias";
+
+  document.getElementById("idade").innerText = idadeExibida;
+}
+
+setInterval(atualizarIdade, 1000);
+const darkThemeRadio = document.getElementById("darkTheme");
+const lightThemeRadio = document.getElementById("lightTheme");
+const body = document.body;
+
+darkThemeRadio.addEventListener("change", () => {
+  body.classList.add("dark-theme");
+  body.classList.remove("light-theme");
+});
+
+lightThemeRadio.addEventListener("change", () => {
+  body.classList.add("light-theme");
+  body.classList.remove("dark-theme");
+});
+
+    </script>
 </body>
 </html>
